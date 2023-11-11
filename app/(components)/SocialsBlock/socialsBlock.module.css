@@ -1,0 +1,80 @@
+.socialsRoot {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.socialsTitle {
+  color: #fff;
+  font-family: var(--font-montserrat);
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.socialsSubtitle {
+  color: #fff;
+  white-space: pre-line;
+  font-family: var(--font-varela);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 36px */
+}
+
+.socialButtonsContainer {
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.iconContainer {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 8px;
+
+  border: solid 4px;
+  border-color: white;
+  border-radius: 500px;
+
+  opacity: 0.8;
+  transform: translateY(0);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+
+  cursor: pointer;
+}
+
+.icon {
+  width: 44px;
+  height: auto;
+}
+
+/* Apply fill to only the interior path not the whole svg */
+.twitterIcon path {
+  fill: rgba(255, 255, 255, 0.8);
+  transition: fill 0.2s ease-out;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+.iconContainer:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  transition: opacity 0.3s ease-out, transform 0.2s ease-out;
+}
+
+.iconContainer:hover .twitterIcon path {
+  fill: rgba(255, 255, 255, 1);
+  transition: fill 0.4s ease-out;
+}

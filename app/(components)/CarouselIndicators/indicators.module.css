@@ -1,0 +1,8 @@
+.indicator {
+  fill: rgba(217, 217, 217, 0.2);
+  cursor: pointer;
+}
+
+.highlighted {
+  fill: #d9d9d9;
+}

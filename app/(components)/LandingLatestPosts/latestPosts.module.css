@@ -1,0 +1,128 @@
+.latestPostsRoot {
+  display: flex;
+  width: 80%;
+  max-width: 1280px;
+  padding: 32px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(229, 173, 173, 0.1) 0%,
+    rgba(229, 173, 173, 0.02) 100%
+  );
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.latestPostsTitle {
+  color: #fff;
+  font-family: var(--font-montserrat);
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.postsRoot {
+  width: 80%;
+  max-width: 1080px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.postsTitle {
+  width: min-content;
+  height: min-content;
+  text-transform: uppercase;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  color: #fff;
+  font-family: var(--font-montserrat);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 4.2px;
+}
+
+.postsContainer {
+  padding-right: 5rem;
+  height: min-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 32px;
+  overflow-x: scroll;
+
+  --scale: 0.1;
+  mask-image: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) calc(var(--scale) * 0%),
+    rgba(255, 255, 255, 1) calc(var(--scale) * 80%)
+  );
+
+  /* Hide scrollbars */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.postsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.viewMoreButton {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  padding: 2rem;
+  border: solid 4px rgba(255, 255, 255, 0.05);
+  border-radius: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.8s ease-out;
+}
+
+.viewMoreButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.2s ease-out;
+}
+
+.arrowRight {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+
+.viewMoreText {
+  font-family: var(--font-montserrat);
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.viewMoreButton:hover .viewMoreText {
+  transition: opacity 0.8s ease-out;
+  opacity: 1;
+}
+
+.viewMoreButton:hover .arrowRight {
+  transition: opacity 0.2s ease-out;
+  opacity: 0;
+}

@@ -1,0 +1,31 @@
+.footerRoot {
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 16px 8px;
+
+  background-color: #121212;
+
+  font-family: var(--font-fira-sans);
+  color: white;
+}
+
+.devVanityText {
+  font-size: 0.8rem;
+}
+
+.devVanityLink {
+  text-decoration: none;
+  color: white;
+  opacity: 0.8;
+
+  transition: opacity 0.2s ease-out;
+}
+
+.devVanityLink:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
