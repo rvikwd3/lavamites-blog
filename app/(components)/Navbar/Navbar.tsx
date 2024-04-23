@@ -4,7 +4,8 @@ import styles from "./Navbar.module.css";
 import { montserrat } from "../../font";
 import Link from "next/link";
 import Hamburger from "public/svg/hamburger.svg";
-import { useState } from "react";
+import { forwardRef, useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 type ActiveLinks =
   | "Home"
@@ -21,15 +22,15 @@ type Link = {
 const leftLinks = [
   {
     text: "Home",
-    target: "#",
+    target: "/",
   },
   {
     text: "All Posts",
-    target: "#",
+    target: "/allPosts",
   },
   {
     text: "Tier List",
-    target: "#",
+    target: "/tierList",
   },
 ];
 const rightLinks = [
@@ -72,53 +73,111 @@ const HamburgerDiv = ({
   );
 };
 
-const FullNavbar = ({
-  active,
-  handleHamburgerClick,
-}: {
-  active: ActiveLinks;
+type FullNavbarProps = {
   handleHamburgerClick: (e: React.MouseEvent) => void;
-}) => {
+  active: ActiveLinks;
+};
+type FullNavbarRef = HTMLDivElement;
+const FullNavbar = forwardRef<FullNavbarRef, FullNavbarProps>((props, ref) => {
   return (
     <nav
       className={`${styles.fullNavbar} ${styles.navbar} ${montserrat.variable}`}
     >
-      <div className={styles.navbarPart}>
-        <HamburgerDiv onClick={handleHamburgerClick} />
-        {getNavlinks(leftLinks, active)}
+      <div className={styles.fullNavbarContent} ref={ref}>
+        <div className={styles.navbarPart}>
+          <HamburgerDiv onClick={props.handleHamburgerClick} />
+          {getNavlinks(leftLinks, props.active)}
+        </div>
+        <div className={styles.navbarPart}>
+          {getNavlinks(rightLinks, props.active)}
+        </div>
       </div>
-      <div className={styles.navbarPart}>{getNavlinks(rightLinks, active)}</div>
     </nav>
   );
-};
+});
 
-const CollapsedNavbar = ({
-  handleHamburgerClick,
-}: {
+type CollapsedNavbarProps = {
   handleHamburgerClick: (e: React.MouseEvent) => void;
-}) => {
-  return (
-    <nav className={`${styles.collapsedNavbar} ${styles.navbar}`}>
-      <div className={styles.collapsedNavbarContent}>
-        <HamburgerDiv onClick={handleHamburgerClick} />
-      </div>
-    </nav>
-  );
 };
+type CollapsedNavbarRef = HTMLDivElement;
+
+const CollapsedNavbar = forwardRef<CollapsedNavbarRef, CollapsedNavbarProps>(
+  (props, ref) => {
+    return (
+      <nav className={`${styles.collapsedNavbar} ${styles.navbar}`}>
+        <div className={styles.collapsedNavbarContent} ref={ref}>
+          <HamburgerDiv onClick={props.handleHamburgerClick} />
+        </div>
+      </nav>
+    );
+  }
+);
 
 const Navbar = ({ active }: { active: ActiveLinks }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const handleHamburgerClick = (e: React.MouseEvent) => {
+  const [isCollapsedNavbarVisible, setIsCollapsedNavbarVisible] =
+    useState(false);
+  const [isFullNavbarVisible, setIsFullNavbarVisible] = useState(true);
+  const collapsedNavbarRef = useRef<HTMLDivElement>(null);
+  const fullNavbarRef = useRef<HTMLDivElement>(null);
+
+  const handleCollapsedHamburgerClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    setIsCollapsed(!isCollapsed);
+    setIsCollapsedNavbarVisible(false);
   };
 
-  return isCollapsed ? (
-    <CollapsedNavbar handleHamburgerClick={handleHamburgerClick} />
-  ) : (
-    <FullNavbar active={active} handleHamburgerClick={handleHamburgerClick} />
+  const handleFullHamburgerClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setIsFullNavbarVisible(false);
+  };
+
+  return (
+    <>
+      <CSSTransition
+        nodeRef={collapsedNavbarRef}
+        in={isCollapsedNavbarVisible}
+        timeout={200}
+        onExited={() => setIsFullNavbarVisible(true)}
+        classNames={{
+          enter: styles.collapsedEnter,
+          enterActive: styles.collapsedEnterActive,
+          enterDone: styles.collapsedEnterDone,
+          exit: styles.collapsedExit,
+          exitActive: styles.collapsedExitActive,
+          exitDone: styles.collapsedExitDone,
+        }}
+        unmountOnExit={true}
+      >
+        <CollapsedNavbar
+          handleHamburgerClick={handleCollapsedHamburgerClick}
+          ref={collapsedNavbarRef}
+        />
+      </CSSTransition>
+      <CSSTransition
+        nodeRef={fullNavbarRef}
+        in={isFullNavbarVisible}
+        timeout={400}
+        onExited={() => setIsCollapsedNavbarVisible(true)}
+        classNames={{
+          enter: styles.fullEnter,
+          enterActive: styles.fullEnterActive,
+          enterDone: styles.fullEnterDone,
+          exit: styles.fullExit,
+          exitActive: styles.fullExitActive,
+          exitDone: styles.fullExitDone,
+        }}
+        unmountOnExit={true}
+      >
+        <FullNavbar
+          active={active}
+          handleHamburgerClick={handleFullHamburgerClick}
+          ref={fullNavbarRef}
+        />
+      </CSSTransition>
+    </>
   );
 };
 

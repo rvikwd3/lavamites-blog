@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./landingCard.module.css";
 import { fira_sans, montserrat, varela } from "../../font";
+import { useRouter } from "next/navigation";
 
 const Pill = ({ text, style }: { text: string; style: "anime" | "other" }) => {
   return (
@@ -13,20 +16,29 @@ const Pill = ({ text, style }: { text: string; style: "anime" | "other" }) => {
 };
 
 const LandingCard = ({
+  postId,
   postImg,
   title,
   tags,
   content,
   style,
 }: {
+  postId: string;
   postImg: string;
   title: string;
   tags: string[];
   content: string;
   style: "anime" | "other";
 }) => {
+  const router = useRouter();
+  const handleCardClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    router.push(`/blog/${encodeURIComponent(postId)}`);
+  };
   return (
-    <div className={styles.cardRoot}>
+    <div className={styles.cardRoot} onClick={handleCardClick}>
       <div className={styles.cardTop}>
         <div className={styles.headerImage}>
           <Image

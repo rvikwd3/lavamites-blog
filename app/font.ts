@@ -1,4 +1,10 @@
-import { Montserrat, Varela, Josefin_Sans, Fira_Sans } from "next/font/google";
+import {
+  Montserrat,
+  Varela,
+  Josefin_Sans,
+  Fira_Sans,
+  Noto_Serif,
+} from "next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,4 +28,10 @@ const varela = Varela({
   variable: "--font-varela",
 });
 
-export { montserrat, josefin_sans, fira_sans, varela };
+const noto_serif = Noto_Serif({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-noto-serif",
+});
+
+export { montserrat, josefin_sans, fira_sans, varela, noto_serif };

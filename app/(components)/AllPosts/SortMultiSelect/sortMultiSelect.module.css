@@ -1,0 +1,41 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  --root-padding-left: 16px;
+  --root-padding-right: 16px;
+
+  /* Text styling */
+  text-transform: capitalize;
+  color: #ddd;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.sortType {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 6px;
+
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  cursor: pointer;
+}
+
+.sortType:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: 300ms;
+}
+
+.selectedSortType {
+  /* background-color: rgba(33, 78, 52, 0.2); */
+  color: #a9dbbe;
+}

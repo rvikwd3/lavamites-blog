@@ -1,0 +1,44 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+
+  background-image: linear-gradient(
+    225deg,
+    rgba(51, 45, 57, 1) 0%,
+    rgba(21, 17, 23, 0.9) 100%
+  );
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content > div {
+  position: relative;
+  margin-top: -48px;
+}
+
+.content > div > img {
+  box-shadow: 0 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.content > div > svg {
+  position: absolute;
+  right: -80px;
+  top: -50px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  stroke: #dfdfdf;
+}
+
+.content > div > svg:hover {
+  stroke: #fff;
+  transform: translateY(-2px);
+  transition: transform 0.2s, stroke 0.2s;
+}

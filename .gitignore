@@ -1,6 +1,8 @@
 node_modules/
 .vscode/
 
+.env.local
+
 
 # Next bloat
 .next/

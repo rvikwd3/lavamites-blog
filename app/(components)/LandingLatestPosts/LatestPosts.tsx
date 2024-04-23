@@ -1,17 +1,26 @@
+"use client";
+
 import styles from "./latestPosts.module.css";
 import { montserrat } from "../../font";
-import { getAnimePosts, getOtherPosts } from "../../util";
+import { getPosts } from "../../util";
 import LandingCard from "../LandingCard/LandingCard";
 import ArrowRight from "../../../public/svg/arrowRight.svg";
 import CustomScrollbar from "../CustomScrollbar/CustomScrollbar";
+import Link from "next/link";
+import { Post } from "app/types";
 
-const getLandingCards = (style: "anime" | "other"): React.ReactNode => {
+const getLandingCards = (
+  style: "anime" | "other",
+  posts: Post[]
+): React.ReactNode => {
   switch (style) {
     case "anime":
-      return getAnimePosts()
+      return posts
+        .filter((post) => post.type.includes("anime"))
         .slice(0, 7)
         .map((post) => (
           <LandingCard
+            postId={post.id}
             postImg={post.postImg}
             title={post.title}
             content={post.content}
@@ -21,10 +30,12 @@ const getLandingCards = (style: "anime" | "other"): React.ReactNode => {
           />
         ));
     case "other":
-      return getOtherPosts()
+      return posts
+        .filter((post) => !post.type.includes("anime"))
         .slice(0, 7)
         .map((post) => (
           <LandingCard
+            postId={post.id}
             postImg={post.postImg}
             title={post.title}
             content={post.content}
@@ -38,16 +49,20 @@ const getLandingCards = (style: "anime" | "other"): React.ReactNode => {
   }
 };
 
-const PostsCategory = ({ category }: { category: "anime" | "other" }) => {
+const PostsCategory = async ({ category }: { category: "anime" | "other" }) => {
+  const posts = await getPosts();
   return (
     <div className={styles.postsRoot}>
       <span className={styles.postsTitle}>{category}</span>
       <CustomScrollbar className={styles.postsContainer}>
-        {getLandingCards(category)}
-        <div className={`${montserrat.variable} ${styles.viewMoreButton}`}>
+        {getLandingCards(category, posts)}
+        <Link
+          className={`${montserrat.variable} ${styles.viewMoreButton}`}
+          href="#"
+        >
           <ArrowRight stroke={"#fff"} className={styles.arrowRight} />
           <span className={styles.viewMoreText}>View More</span>
-        </div>
+        </Link>
       </CustomScrollbar>
     </div>
   );

@@ -1,0 +1,29 @@
+.cardImage {
+  position: relative;
+  width: 100%;
+  min-width: 200px;
+  height: auto;
+  aspect-ratio: 176 / 256;
+
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  transform: translateY(0px);
+  transition: box-shadow 0.6s, transform 0.4s, filter 0.2s;
+
+  overflow: hidden;
+}
+
+.cardImage > img {
+  object-fit: cover;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  box-shadow: 0px 4px 6px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  filter: brightness(1.05) contrast(0.8);
+  transition: box-shadow 0.3s, transform 0.3s, filter 0.2s;
+}

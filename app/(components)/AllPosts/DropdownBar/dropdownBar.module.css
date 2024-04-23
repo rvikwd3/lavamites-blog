@@ -1,0 +1,103 @@
+.root {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+
+  --dropdown-padding-top: 36px;
+  --dropdown-padding-bottom: 24px;
+  --dropdown-max-height: 400px;
+  --dropdown-transition-time: 300ms;
+}
+
+.bar {
+  padding: 8px 16px;
+  border-radius: 24px;
+  background: #6d5875;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.1);
+
+  z-index: 10;
+
+  cursor: pointer;
+}
+
+.barElements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+
+  /* Span font qualities */
+  color: #ddd;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.dropdownRoot {
+  position: absolute;
+  display: block;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 50%;
+
+  /* Will be animated in dropdown animation
+  padding-top: 24px;
+  padding-bottom: 24px; */
+
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  z-index: -1;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  background-color: #57465d;
+
+  box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation styles */
+
+.dropdownEnter {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.dropdownEnterActive {
+  max-height: var(--dropdown-max-height);
+  padding-top: var(--dropdown-padding-top);
+  padding-bottom: var(--dropdown-padding-bottom);
+  transition: var(--dropdown-transition-time);
+}
+
+.dropdownEnterDone {
+  max-height: var(--dropdown-max-height);
+  padding-top: var(--dropdown-padding-top);
+  padding-bottom: var(--dropdown-padding-bottom);
+  transition: var(--dropdown-transition-time);
+}
+
+.dropdownExit {
+  max-height: var(--dropdown-max-height);
+  padding-top: var(--dropdown-padding-top);
+  padding-bottom: var(--dropdown-padding-bottom);
+}
+
+.dropdownExitActive {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: var(--dropdown-transition-time);
+}
+
+.dropdownExitDone {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: var(--dropdown-transition-time);
+}

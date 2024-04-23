@@ -1,0 +1,77 @@
+.post {
+  display: flex;
+  width: 100%;
+  height: 9vw; /* Using % will scale with no. of posts, we want posts to be same size */
+  min-height: 176px;
+  align-items: flex-start;
+
+  border-radius: 8px;
+  background: var(--Card-Purple, #453652);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+
+  overflow: hidden;
+}
+
+.postImage {
+  position: relative;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1/1;
+}
+
+.postImage > img {
+  object-fit: cover;
+}
+
+.postContent {
+  display: flex;
+  padding: 16px 16px 8px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.postContent > .postTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #fff;
+  line-height: normal;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-fira-sans);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.postDetails {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d9d9d9;
+  font-family: var(--font-fira-sans);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.postContentText {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.8);
+  text-overflow: ellipsis;
+  font-family: var(--font-varela);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
